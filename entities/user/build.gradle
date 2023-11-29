@@ -1,0 +1,9 @@
+apply plugin: 'java-library'
+archivesBaseName = 'entities-user'
+java {
+	sourceCompatibility = '17'
+}
+
+repositories {
+	mavenCentral()
+}
