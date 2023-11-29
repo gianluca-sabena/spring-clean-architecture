@@ -1,6 +1,6 @@
 rootProject.name = 'spring-clean'
-include 'frameworks:servlet'
-//include 'frameworks:batch'
+//include 'frameworks:servlet'
+include 'frameworks:batch'
 include 'usecases:user'
 include 'entities:user'
 //include 'adapters:memory'

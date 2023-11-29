@@ -38,7 +38,19 @@ tasks.named('bootBuildImage') {
 tasks.named('test') {
     useJUnitPlatform()
 }
-// to be checked
-// bootJar {
-//    duplicatesStrategy(DuplicatesStrategy.EXCLUDE)
-// }
+
+tasks.withType(Test).configureEach {
+	useJUnitPlatform()
+    testLogging {
+        // show success log in console
+        events "passed", "skipped", "failed"
+        // events "failed"
+        // print stack trace from tested code
+        // exceptionFormat = 'full'
+    }
+    // https://docs.gradle.org/current/dsl/org.gradle.api.tasks.testing.Test.html
+    // some messages may be logged two times...
+    // testLogging.showStandardStreams = true
+    // always execute tests
+	outputs.upToDateWhen { false }
+}

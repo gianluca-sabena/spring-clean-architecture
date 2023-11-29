@@ -3,12 +3,34 @@
 An opinionated spring template based on a "clean architecture". (See credits)
 
 ## Architecture
-
-## Folder
+```
+┌─────────────────────────────────────┐
+│Framework                            │
+│ ┌────────────────────────────────┐  │
+│ │Adapters                        │  │
+│ │    ┌────────────────────────┐  │  │
+│ │    │Use cases               │  │  │
+│ │    │   ┌─────────────────┐  │  │  │
+│ │    │   │Entities         │  │  │  │
+│ │    │   │- Users.java     │  │  │  │
+│ │    │   └─────────────────┘  │  │  │
+│ │    │- Ports (UserRepository)│  │  │
+│ │    │- CreateUser            │  │  │
+│ │    │- FindUser              │  │  │
+│ │    │- LoginUser             │  │  │
+│ │    └────────────────────────┘  │  │
+│ │- Jdbc                          │  │
+│ │- Memory                        │  │
+│ └────────────────────────────────┘  │
+│- Spring Batch                       │
+│- Spring Servlet                     │
+└─────────────────────────────────────┘
+```
 
 ## Configure
-
-
+In order to switch adapter from memory to jdbc
+- 1) edit [settings.gradle](./settings.gradle) and comment `include 'adapters:memory'` and comment out `include 'adapters:jdbc'`
+- 2) In frameworks folder: edit batch and/or servlet 
 
 ## Gradle
 

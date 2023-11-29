@@ -23,15 +23,24 @@ import org.springframework.core.io.FileSystemResource;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
 import com.example.clean.adapter.DbUserRepository;
-import com.example.clean.adapter.DbUserRepositoryJdbc;
+//import com.example.clean.adapter.DbUserRepositoryJdbc;
 import com.example.clean.usecase.FindUser;
 import com.example.clean.usecase.port.UserRepository;
 import com.example.clean.entities.user.User;
 
 @Configuration
 public class BatchConfiguration {
-    private final UserRepository userRepository = new DbUserRepository();
-    private final FindUser findUser = new FindUser(userRepository);
+
+    @Autowired
+    private DbUserRepository dbUserRepository;
+
+    @Autowired
+    public BatchConfiguration(final DbUserRepository dbUserRepositoryJdbc) {
+        this.dbUserRepository = dbUserRepositoryJdbc;
+    }
+
+    //private final UserRepository userRepository = new DbUserRepository();
+    //private final FindUser findUser = new FindUser(userRepository);
     @Autowired
 	private UserReader userReader;
     // https://docs.spring.io/spring-batch/reference/readers-and-writers/flat-files/file-item-writer.html#SimplifiedFileWritingExample
@@ -44,13 +53,13 @@ public class BatchConfiguration {
                 .build();
     }
 
-    @Bean
-    public ItemReaderAdapter<User> itemReader() {
-        ItemReaderAdapter<User> reader = new ItemReaderAdapter<User>();
-        reader.setTargetObject(findUser);
-        reader.setTargetMethod("findAllUsers");
-        return reader;
-    }
+    // @Bean
+    // public ItemReaderAdapter<User> itemReader() {
+    //     ItemReaderAdapter<User> reader = new ItemReaderAdapter<User>();
+    //     reader.setTargetObject(findUser);
+    //     reader.setTargetMethod("findAllUsers");
+    //     return reader;
+    // }
 
 
     // tag::jobstep[]
@@ -63,8 +72,7 @@ public class BatchConfiguration {
     }
 
     @Bean
-    public Step step1(JobRepository jobRepository, DataSourceTransactionManager transactionManager,
-            ItemReaderAdapter<User> reader, FlatFileItemWriter<User>  writer) {
+    public Step step1(JobRepository jobRepository, DataSourceTransactionManager transactionManager, FlatFileItemWriter<User>  writer) {
         return new StepBuilder("step1", jobRepository)
                 .<User, User>chunk(3, transactionManager)
                 .reader(userReader)
