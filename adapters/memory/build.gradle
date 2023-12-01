@@ -22,7 +22,7 @@ dependencyManagement {
 }
 
 dependencies {
-    implementation project(':entities:user')
-    implementation project(':usecases:user')
+    implementation project(':entities')
+    implementation project(':usecases')
     implementation 'org.springframework.boot:spring-boot-starter'
 }

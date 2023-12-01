@@ -16,9 +16,6 @@ databaseChangeLog:
                   name:  email  
                   type:  varchar(50)  
               -  column:  
-                  name:  password  
-                  type:  varchar(50)  
-              -  column:  
                   name:  lastName  
                   type:  varchar(50)  
               -  column:  

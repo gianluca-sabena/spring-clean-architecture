@@ -16,8 +16,8 @@ repositories {
 }
 
 dependencies {
-    implementation project(':usecases:user')
-    implementation project(':entities:user')
+    implementation project(':usecases')
+    implementation project(':entities')
     //implementation project(':adapters:memory')
     implementation project(':adapters:jdbc')
     implementation 'org.springframework.boot:spring-boot-starter-actuator'

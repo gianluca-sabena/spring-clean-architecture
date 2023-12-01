@@ -1,6 +1,6 @@
 package com.example.clean.adapter;
 
-import com.example.clean.entities.user.User;
+import com.example.clean.entities.User;
 import com.example.clean.usecase.port.UserRepository;
 
 import java.util.HashMap;
@@ -12,18 +12,17 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
-@Service
+@Repository
 public class DbUserRepository implements UserRepository {
     Logger logger = LoggerFactory.getLogger(DbUserRepository.class);
 
-    // @Autowired
     private JdbcTemplate jdbcTemplate;
 
     private final Map<String, User> inMemoryDb = new HashMap<>();
 
-    @Autowired
     public DbUserRepository(JdbcTemplate jdbcTemplate) {
         logger.info("-------> DbUserRepository JDBC - {}", jdbcTemplate.toString());
         this.jdbcTemplate = jdbcTemplate;
@@ -39,7 +38,7 @@ public class DbUserRepository implements UserRepository {
     @Override
     public User create(final User user) {
         logger.info("JDBC adapter - Create user: {}", user.getId());
-        jdbcTemplate.update("INSERT INTO person(id, email, password, lastName, firstName) VALUES (?,?,?,?,?)", user.getId(), user.getEmail(), user.getPassword(), user.getLastName(), user.getFirstName());
+        jdbcTemplate.update("INSERT INTO person(id, email, lastName, firstName) VALUES (?,?,?,?)", user.getId(), user.getEmail(), user.getLastName(), user.getFirstName());
         //inMemoryDb.put(user.getId(), user);
         return user;
     }
@@ -52,9 +51,9 @@ public class DbUserRepository implements UserRepository {
     @Override
     public List<User> findAllUsers() {
         return jdbcTemplate.query(
-                "SELECT id, email, password, lastName, firstName FROM person",
+                "SELECT id, email, lastName, firstName FROM person",
                 (rs, rowNum) -> User.builder().id(rs.getString("id")).email(rs.getString("email"))
-                        .password(rs.getString("password")).lastName(rs.getString("lastName"))
+                        .lastName(rs.getString("lastName"))
                         .firstName(rs.getString("firstName")).build());
     }
 }

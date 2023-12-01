@@ -26,7 +26,7 @@ public class RestServiceApplicationTests {
 	public void noParamGreetingShouldReturnDefaultMessage() throws Exception {
 
 		this.mockMvc.perform(get("/users")).andDo(print()).andExpect(status().isOk())
-				.andExpect(content().string(containsString("[{\"id\":\"00000000-0000-0000-0000-000000000000\",\"email\":\"email@domain.com\",\"password\":null,\"lastName\":\"Last Name\",\"firstName\":\"First Name\"}]")));
+				.andExpect(content().string(containsString("[{\"id\":\"00000000-0000-0000-0000-000000000000\",\"email\":\"email@domain.com\",\"lastName\":\"Last Name\",\"firstName\":\"First Name\"}]")));
 	}
 
 

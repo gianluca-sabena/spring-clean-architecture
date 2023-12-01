@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.example.clean.adapter.DbUserRepository;
-//import com.example.clean.adapter.DbUserRepositoryJdbc;
 import com.example.clean.usecase.FindUser;
 import com.example.clean.usecase.port.UserRepository;
 import com.example.clean.entities.user.User;
