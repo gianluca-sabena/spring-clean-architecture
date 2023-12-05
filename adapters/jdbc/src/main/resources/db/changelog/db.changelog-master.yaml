@@ -4,7 +4,7 @@ databaseChangeLog:
       author:  default  
       changes:  
         -  createTable:  
-            tableName:  person  
+            tableName:  customer  
             columns:  
               -  column:  
                   name:  id  
@@ -26,7 +26,7 @@ databaseChangeLog:
       author:  default 
       changes:  
       -  insert:  
-          tableName:  person
+          tableName:  customer
           columns:  
           -  column:  
               name:  id  

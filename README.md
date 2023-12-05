@@ -12,12 +12,12 @@ An opinionated spring template based on a "clean architecture". (See credits)
 │ │    │Use cases               │  │  │
 │ │    │   ┌─────────────────┐  │  │  │
 │ │    │   │Entities         │  │  │  │
-│ │    │   │- Users.java     │  │  │  │
+│ │    │   │- Customers.java │  │  │  │
 │ │    │   └─────────────────┘  │  │  │
-│ │    │- Ports (UserRepository)│  │  │
-│ │    │- CreateUser            │  │  │
-│ │    │- FindUser              │  │  │
-│ │    │- LoginUser             │  │  │
+│ │    │- Ports (CustomerRep...)│  │  │
+│ │    │- CreateCustomer        │  │  │
+│ │    │- FindCustomer          │  │  │
+│ │    │- LoginCustomer         │  │  │
 │ │    └────────────────────────┘  │  │
 │ │- Jdbc                          │  │
 │ │- Memory                        │  │
@@ -34,6 +34,8 @@ In order to switch adapter from memory to jdbc
 - 3) Repeat step 2 for all other frameworks...
 
 ## Run
+
+Use `devel.sh -h` to run main actions
 
 - Run `./gradlew bootRun`
 - Build (include tests) `./gradlew build`
