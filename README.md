@@ -27,21 +27,37 @@ An opinionated spring template based on a "clean architecture". (See credits)
 └─────────────────────────────────────┘
 ```
 
-## Configure
-In order to switch adapter from memory to jdbc
-- 1) edit [settings.gradle](./settings.gradle) and comment `include 'adapters:memory'` and uncomment `include 'adapters:jdbc'`
-- 2) In folder: frameworks / servlet edit file [build.gradle](./frameworks/servlet/build.gradle) and comment `implementation project(':adapters:memory')` and uncomment `implementation project(':adapters:jdbc')`
-- 3) Repeat step 2 for all other frameworks...
+## Requirements
+
+Linux/WSL2
+- Install sdkman <https://sdkman.io/>
+- Install java `sdk install java 20.0.2-open`
+
+Windows
+- Install scoop.sh <https://scoop.sh/>
+- Install java `scoop install openjdk20`
+- Install git with bash `scoop install main/git`
 
 ## Run
 
-Use `devel.sh -h` to run main actions
+Open a bash (on windows use `git-bash.exe` or similar)
+Use `devel.sh -h` to run main actions 
 
 - Run `./gradlew bootRun`
 - Build (include tests) `./gradlew build`
 - Test
   - Framework servlet see [frameworks/servlet/README.md](./frameworks/servlet/README.md) 
 
+## Configure
+
+In order to switch adapter from memory to jdbc
+
+Simple approach is to use `devel.sh -c`
+
+Long description:
+- 1) edit [settings.gradle](./settings.gradle) and comment `include 'adapters:memory'` and uncomment `include 'adapters:jdbc'`
+- 2) In folder: frameworks / servlet edit file [build.gradle](./frameworks/servlet/build.gradle) and comment `implementation project(':adapters:memory')` and uncomment `implementation project(':adapters:jdbc')`
+- 3) Repeat step 2 for all other frameworks...
 
 
 ## Source

@@ -7,7 +7,7 @@
 ## Test
 
 Create a user
-```curl -X POST  http://127.0.0.1:8080/users --header "Content-Type: application/json"  --data '{"email":"xyz@ab.com","password":"xyz",  "lastName": "Me", "firstName": "You"}'```
+```curl -X POST  http://127.0.0.1:8080/customers --header "Content-Type: application/json"  --data '{"email":"xyz@ab.com", "lastName": "Me", "firstName": "You"}'```
 
 List Users
-````curl -X GET  http://127.0.0.1:8080/users `
+````curl -X GET  http://127.0.0.1:8080/customers`
