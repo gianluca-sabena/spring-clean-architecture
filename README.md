@@ -31,18 +31,22 @@ An opinionated spring template based on a "clean architecture". (See credits)
 
 Java 17 or higher is required
 
-Linux/WSL2
+Linux environment is required to run docker container
+
+Linux/WSL2 - **Recommended** 
 - Install sdkman <https://sdkman.io/>
 - Install java `sdk install java 20.0.2-open`
+- Install docker
 
 Windows
 - Install scoop.sh <https://scoop.sh/>
 - Install java `scoop install openjdk20`
 - Install git with bash `scoop install main/git`
+- Start a bash terminal with `git-bash.exe`
 
 ## 2. Run
 
-Open a bash (on windows use `git-bash.exe` or similar)
+Open a terminal with a bash compatible shell
 
 Use `devel.sh -h` to print help main actions 
 
@@ -50,8 +54,6 @@ Use `devel.sh -h` to print help main actions
 - `devel.sh test` -> execute `./gradlew build`
 - `devel.sh buid` -> execute `./gradlew build`
 - `devel.sh run` -> execute `./gradlew bootRun`
-
-Framework servlet see [frameworks/servlet/README.md](./frameworks/servlet/README.md) 
 
 ## 3. Setup Project
 
@@ -67,11 +69,9 @@ Long answer:
 ## 4. Test 
 
 ### Framework/servlet
-Create a customer
-```curl -X POST  http://127.0.0.1:8080/customers --header "Content-Type: application/json"  --data '{"email":"xyz@ab.com", "lastName": "Me", "firstName": "You"}'```
 
-List customers
-````curl -X GET  http://127.0.0.1:8080/customers```
+- Create a customer ```curl -X POST  http://127.0.0.1:8080/customers --header "Content-Type: application/json"  --data '{"email":"xyz@ab.com", "lastName": "Me", "firstName": "You"}'```
+- List customers ```curl -X GET  http://127.0.0.1:8080/customers```
 
 ## TODO
 - Experiments with application properties
