@@ -27,7 +27,9 @@ An opinionated spring template based on a "clean architecture". (See credits)
 └─────────────────────────────────────┘
 ```
 
-## Requirements
+## 1. Setup Environment
+
+Java 17 or higher is required
 
 Linux/WSL2
 - Install sdkman <https://sdkman.io/>
@@ -38,37 +40,42 @@ Windows
 - Install java `scoop install openjdk20`
 - Install git with bash `scoop install main/git`
 
-## Run
+## 2. Run
 
 Open a bash (on windows use `git-bash.exe` or similar)
+
 Use `devel.sh -h` to run main actions 
 
-- Run `./gradlew bootRun`
-- Build (include tests) `./gradlew build`
-- Test
-  - Framework servlet see [frameworks/servlet/README.md](./frameworks/servlet/README.md) 
+Start  with 
+- Start docker compose with postgreSQL `devel.sh du`
+- `devel.sh test` -> execute `./gradlew build`
+- `devel.sh buid` -> execute `./gradlew build`
+- `devel.sh run` -> execute `./gradlew bootRun`
 
-## Configure
+Framework servlet see [frameworks/servlet/README.md](./frameworks/servlet/README.md) 
+
+## 3. Setup Project
 
 In order to switch adapter from memory to jdbc
 
-Simple approach is to use `devel.sh -c`
+Short answer: use `devel.sh -c`
 
-Long description:
+Long answer:
 - 1) edit [settings.gradle](./settings.gradle) and comment `include 'adapters:memory'` and uncomment `include 'adapters:jdbc'`
 - 2) In folder: frameworks / servlet edit file [build.gradle](./frameworks/servlet/build.gradle) and comment `implementation project(':adapters:memory')` and uncomment `implementation project(':adapters:jdbc')`
 - 3) Repeat step 2 for all other frameworks...
 
 
-## Source
-
-- Generate spring servlet from spring boot initializr
-- Add example from official guide <https://github.com/spring-guides/tut-rest>
-- Add code from <https://github.com/microservices-demo/orders>
 
 ## TODO
 - Experiments with application properties
-- JDBC with postgresql and oracle with 
+- JDBC with postgresql and oracle with ucp
+- Add tests to adapter
+- Tescontainers
+- Buid jar
+- Add more entities (item, order)
+- Integrate lombok for entities
+- Add a serialization adapter
 
 ## Credits
 
@@ -83,8 +90,10 @@ This project was inspired by:
 - Example with ArchUnit <https://reflectoring.io/java-components-clean-boundaries/>
 
 ## Resources
+- Generate spring servlet from spring boot initializr
+- Spring Boot rest <https://github.com/spring-guides/tut-rest>
+- Microservice example <https://github.com/microservices-demo/orders>
 - Baeldung - Rest with pagination <https://www.baeldung.com/rest-api-pagination-in-spring>
 - Spring multi module <https://spring.io/guides/gs/multi-module/>
 - Blog <https://www.arhohuttunen.com/hexagonal-architecture-spring-boot/>
 - Blog <https://betterprogramming.pub/hexagonal-architecture-with-spring-boot-74e93030eba3>
-

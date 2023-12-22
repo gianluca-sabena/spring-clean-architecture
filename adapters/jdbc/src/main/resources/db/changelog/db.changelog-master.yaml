@@ -1,42 +1,42 @@
-databaseChangeLog:  
-  -  changeSet:  
-      id:  "1"  
-      author:  default  
-      changes:  
-        -  createTable:  
-            tableName:  customer  
-            columns:  
-              -  column:  
-                  name:  id  
-                  type:  uuid  
-                  constraints:  
-                    primaryKey:  true  
-                    nullable:  false  
-              -  column:  
-                  name:  email  
-                  type:  varchar(50)  
-              -  column:  
-                  name:  lastName  
-                  type:  varchar(50)  
-              -  column:  
-                  name:  firstName  
-                  type:  varchar(50)  
-  -  changeSet:  
-      id:  "2" 
-      author:  default 
-      changes:  
-      -  insert:  
-          tableName:  customer
-          columns:  
-          -  column:  
-              name:  id  
-              value:  00000000-0000-0000-0000-000000000000 
-          -  column:  
-              name:  email  
-              value:  email@domain.com 
-          -  column:  
-              name:  firstName  
-              value:  First Name
-          -  column:  
-              name:  lastName  
-              value:  Last Name
+databaseChangeLog:
+    - changeSet:
+          id: "1"
+          author: default
+          changes:
+              - createTable:
+                    tableName: customer
+                    columns:
+                        - column:
+                              name: id
+                              type: varchar(50)
+                              constraints:
+                                  primaryKey: true
+                                  nullable: false
+                        - column:
+                              name: email
+                              type: varchar(50)
+                        - column:
+                              name: lastname
+                              type: varchar(50)
+                        - column:
+                              name: firstname
+                              type: varchar(50)
+    - changeSet:
+          id: "2"
+          author: default
+          changes:
+              - insert:
+                    tableName: customer
+                    columns:
+                        - column:
+                              name: id
+                              value: 00000000-0000-0000-0000-000000000000
+                        - column:
+                              name: email
+                              value: email@domain.com
+                        - column:
+                              name: firstname
+                              value: First Name
+                        - column:
+                              name: lastname
+                              value: Last Name

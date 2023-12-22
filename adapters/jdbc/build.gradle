@@ -24,10 +24,31 @@ dependencyManagement {
 dependencies {
     implementation project(':entities')
     implementation project(':usecases')
-    //implementation 'org.springframework.boot:spring-boot-starter'
     implementation 'org.springframework.boot:spring-boot-starter-jdbc'
-    runtimeOnly 'com.h2database:h2'
+    //runtimeOnly 'com.h2database:h2'
+    runtimeOnly 'org.postgresql:postgresql'
     implementation 'org.liquibase:liquibase-core'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    //testImplementation 'org.testcontainers:junit-jupiter'
+    //testImplementation 'org.testcontainers:postgresql'
 }
 
+tasks.named('test') {
+    useJUnitPlatform()
+}
 
+tasks.withType(Test).configureEach {
+	useJUnitPlatform()
+    testLogging {
+        // show success log in console
+        events "passed", "skipped", "failed"
+        // events "failed"
+        // print stack trace from tested code
+        exceptionFormat = 'full'
+    }
+    // https://docs.gradle.org/current/dsl/org.gradle.api.tasks.testing.Test.html
+    // some messages may be logged two times...
+    // testLogging.showStandardStreams = true
+    // always execute tests
+	outputs.upToDateWhen { false }
+}

@@ -2,10 +2,12 @@
 // From https://github.com/spring-guides/gs-rest-service/blob/main/complete/src/test/java/com/example/restservice/GreetingControllerTests.java
 package com.example.clean.restservice;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import java.util.UUID;
 
 import org.junit.jupiter.api.Test;
 
@@ -14,8 +16,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.http.MediaType;
-import static org.hamcrest.Matchers.containsString;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 @SpringBootTest
@@ -27,11 +27,12 @@ public class RestServiceApplicationTests {
 
     @Test
     public void createCustomer() throws Exception {
+        String email = "23442";// UUID.randomUUID().toString();
         this.mockMvc
                 .perform(post("/customers").contentType(MediaType.APPLICATION_JSON).content(
-                        "{\"email\":\"aaa@domain.com\",\"lastName\":\"Last Name\",\"firstName\":\"First Name\"}"))
+                        "{\"email\":\""+email+"@domain.com\",\"lastName\":\"Last Name\",\"firstName\":\"First Name\"}"))
                 .andDo(print()).andExpect(status().isOk())
-                .andExpect(jsonPath("$.email").value("aaa@domain.com"));
+                .andExpect(jsonPath("$.email").value(email+"@domain.com"));
     }
     // @Test
     // public void noParamGreetingShouldReturnDefaultMessage() throws Exception {
