@@ -44,9 +44,8 @@ Windows
 
 Open a bash (on windows use `git-bash.exe` or similar)
 
-Use `devel.sh -h` to run main actions 
+Use `devel.sh -h` to print help main actions 
 
-Start  with 
 - Start docker compose with postgreSQL `devel.sh du`
 - `devel.sh test` -> execute `./gradlew build`
 - `devel.sh buid` -> execute `./gradlew build`
@@ -58,19 +57,27 @@ Framework servlet see [frameworks/servlet/README.md](./frameworks/servlet/README
 
 In order to switch adapter from memory to jdbc
 
-Short answer: use `devel.sh -c`
+Short answer: use `devel.sh config`
 
 Long answer:
 - 1) edit [settings.gradle](./settings.gradle) and comment `include 'adapters:memory'` and uncomment `include 'adapters:jdbc'`
 - 2) In folder: frameworks / servlet edit file [build.gradle](./frameworks/servlet/build.gradle) and comment `implementation project(':adapters:memory')` and uncomment `implementation project(':adapters:jdbc')`
 - 3) Repeat step 2 for all other frameworks...
 
+## 4. Test 
 
+### Framework/servlet
+Create a customer
+```curl -X POST  http://127.0.0.1:8080/customers --header "Content-Type: application/json"  --data '{"email":"xyz@ab.com", "lastName": "Me", "firstName": "You"}'```
+
+List customers
+````curl -X GET  http://127.0.0.1:8080/customers```
 
 ## TODO
 - Experiments with application properties
 - JDBC with postgresql and oracle with ucp
 - Add tests to adapter
+- Oauth2 with local IDP provider (<https://www.keycloak.org/>)
 - Tescontainers
 - Buid jar
 - Add more entities (item, order)
